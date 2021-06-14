@@ -54,6 +54,7 @@ input{
     background-color: #74b9ff;
     margin-top:  4rem ;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 #submit:hover{
