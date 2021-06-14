@@ -53,19 +53,36 @@ input{
     color: #fff;
     background-color: #74b9ff;
     margin-top:  4rem ;
+    border-radius: 10px;
 }
 
 #submit:hover{
     background-color: #1481ee;
 }
+.btn:hover{
+    background-color: red;
+}
 
 #showScore{
-    background-color: #dfe6e9;
+    background-color: #bce4f5;
     margin-top: 3rem;
     padding: 3rem 4rem;
+    border-radius: 10px;
     box-shadow: 0 1rem 1rem -.7rem rgba(0, 0, 0, 0.4);
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bold;
+    
 }
 
 .scoreArea{
     display: none;
+}
+
+.loose{
+    color: red;
+}
+.win{
+    color: rgb(6, 77, 6);
+   
 }

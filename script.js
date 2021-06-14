@@ -34,16 +34,22 @@ const quiz =
 ];
 
 const ques = document.getElementsByClassName("question")[0];
-const ans1 = document.getElementById("opt1");
-const ans2 = document.getElementById("opt2");
-const ans3 = document.getElementById("opt3");
-const ans4 = document.getElementById("opt4");
+
+const ans1 = document.getElementById("option1");
+const ans2 = document.getElementById("option2");
+const ans3 = document.getElementById("option3");
+const ans4 = document.getElementById("option4");
+
 const submit = document.querySelector('#submit');
-const answer = document.querySelectorAll('.answer')
+
+const answers = document.querySelectorAll('.answer')
 
 
+const showScore = document.querySelector('#showScore');
 // counter for nextQuestion
 let qCount = 0;
+// counter for the total score
+let score  = 0;
 
 const loadAnotherQuestion = () => {
     const questionList = quiz[qCount];
@@ -61,12 +67,58 @@ loadAnotherQuestion();
 const getCheckAnswer = () =>{
     let answer;
     answers.forEach((currentElem) => {
-        if (curAnsElem.checked) {
-            answer
+        if (currentElem.checked) {
+            // taking the id of the element , which is checked by the user
+            answer = currentElem.id;
         }
     });
+    return answer;
+}
+
+// removing the selected option form the quiz
+const deselect = ()=>{
+    // whichever option is marked as checked it will be unchecked
+    answers.forEach((currentElem) => currentElem.checked = false)
 }
 
 submit.addEventListener('click',()=>{
     const checkAnswer = getCheckAnswer();
+    console.log(checkAnswer);
+
+    // checking the correct answer and increment the score
+    if (checkAnswer === quiz[qCount].ans) {
+        score++;
+    }
+    // else if(checkAnswer === undefined){
+    //     alert("please answer the following question");
+    //     // break;
+    // }
+
+    // increment the question Count so that new question would appear
+    qCount++;
+    deselectAll();
+
+    if(qCount < quiz.length)
+    {
+        loadAnotherQuestion()
+    }else{
+        if(score<1){
+            showScore.innerHTML=
+            `
+            <h1 class="loose">Oops!</>
+            <h3 class="loose">You Scored ${score}/${quiz.length} </h3>
+            <button class="btn" onclick="location.reload() " >Better luck next time</button>
+            `
+        }else{
+            showScore.innerHTML= 
+            `
+            <h1 class="win">Good !</>
+            <h3>You Scored ${score}/${quiz.length}</h3>
+            <button class="btn" onclick="location.reload()">PLAY AGAIN</button>
+            `
+        }
+        
+
+        showScore.classList.remove('scoreArea');
+    }
 })
