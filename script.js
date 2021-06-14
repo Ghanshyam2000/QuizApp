@@ -76,7 +76,7 @@ const getCheckAnswer = () =>{
 }
 
 // removing the selected option form the quiz
-const deselect = ()=>{
+const deselectAll = ()=>{
     // whichever option is marked as checked it will be unchecked
     answers.forEach((currentElem) => currentElem.checked = false)
 }
